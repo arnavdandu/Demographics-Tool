@@ -5,11 +5,13 @@ import json
 imgurl = input("Input image URL.\n")
 
 app = ClarifaiApp(api_key='60a12430f9ca4d2c855ce51a475662ef')
-
 model = app.models.get('demographics')
-image = ClImage(url=imgurl)
 
-data = model.predict([image])
+try:
+    image = ClImage(url=imgurl)
+    data = model.predict([image])
+except:
+    print("Invalid entry. Make sure the input is an image URL which contains only one face that is clearly visible.")
 
 def getData(data):
     nData = data
